@@ -39,7 +39,7 @@ func alias2ipaddr(alias string) (string, error) {
 func main() {
 	//setup config
 	viper.AddConfigPath(configpath)
-	viper.AddConfigPath("/etc/app")
+	viper.AddConfigPath("/go/src")
 	viper.SetConfigName(config)
 	viper.ReadInConfig()
 

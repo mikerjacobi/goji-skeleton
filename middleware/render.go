@@ -12,7 +12,7 @@ var rend *render.Render
 func init() {
 	rend = render.New(render.Options{
 		Layout:    "layout",
-		Directory: "templates",
+		Directory: "/go/src/templates",
 	})
 }
 

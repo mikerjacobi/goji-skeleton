@@ -1,11 +1,11 @@
-FROM debian:latest
+FROM golang:latest
 
 EXPOSE 80
 
 ADD config.toml /config.toml
-ADD goji-skeleton /goji-skeleton
+#ADD . /go/src/
 #ADD node_modules /node_modules
 #ADD static /static
 #ADD templates /templates
-
-CMD ["/goji-skeleton"]
+CMD go build /go/src/
+CMD ["/go/src/goji-skeleton"]

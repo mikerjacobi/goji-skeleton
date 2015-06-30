@@ -1,3 +1,5 @@
+template_path = "/go/src/template"
+
 [redis]
     host = "redis"
     port = "6379"
