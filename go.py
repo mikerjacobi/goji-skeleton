@@ -4,7 +4,7 @@ import os
 container_name = "goji"
 host_port = "8003"
 
-cmd = "docker ps | grep %s"%container_name
+cmd = "docker ps -a | grep %s"%container_name
 container_exists = len(os.popen(cmd).read().split('\n')) > 1
 print cmd
 print "exists:", container_exists

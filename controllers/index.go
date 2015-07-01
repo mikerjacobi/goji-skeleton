@@ -2,32 +2,30 @@ package controllers
 
 import (
 	"net/http"
-	"os"
 
-	"github.com/Sirupsen/logrus"
-	"github.com/spf13/viper"
 	"github.com/unrolled/render"
 	"github.com/zenazn/goji/web"
 )
 
 func HealthCheckHandler(c web.C, w http.ResponseWriter, r *http.Request) {
 	rend := c.Env["render"].(*render.Render)
-	wd, _ := os.Getwd()
-	logrus.Info(">>>", wd)
-	logrus.Info(viper.GetString("template_path"))
-	rend.JSON(w, http.StatusOK, "Success")
+	resp := map[string]string{"Success": "true"}
+	rend.JSON(w, http.StatusOK, resp)
 }
 
-type IndexPayload struct{}
+type IndexPayload struct {
+	Action *string
+}
 
 func IndexHandler(c web.C, w http.ResponseWriter, r *http.Request) {
 	rend := c.Env["render"].(*render.Render)
 
-	//ip := IndexPayload{}
+	action := "http://www.jacobra.com:8003/login"
+	ip := IndexPayload{
+		Action: &action,
+	}
 	/*if userInfo, ok := c.Env["userinfo"]; ok {
 		sc.UserInfo = userInfo.(*models.UserInfo)
 	}*/
-	//tmpl := viper.GetString("template_path") + "/index"
-	rend.HTML(w, http.StatusOK, "index", nil)
-	//rend.JSON(w, http.StatusOK, "oo1o")
+	rend.HTML(w, http.StatusOK, "index", ip)
 }

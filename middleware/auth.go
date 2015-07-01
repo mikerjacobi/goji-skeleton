@@ -1,27 +1,5 @@
 package middleware
 
-import "strings"
-
-var (
-	auth_exempt_whitelist = [...]string{
-		"/generate_rss",
-		"/login",
-		"/logout",
-		"/health-check",
-		"/oauth2callback",
-	}
-)
-
-func endpointIsExemptFromAuth(endpoint string) bool {
-	for i := 0; i < len(auth_exempt_whitelist); i++ {
-		if strings.Contains(endpoint, auth_exempt_whitelist[i]) {
-			return true
-		}
-	}
-
-	return false
-}
-
 /*
 func AuthMiddleware(c *web.C, h http.Handler) http.Handler {
 	fn := func(w http.ResponseWriter, r *http.Request) {

@@ -1,5 +1,7 @@
-template_path = "/go/src/template"
-
+template_path = "/go/src/templates"
+oauth_server_base_url = "www.jacobra.com:8002"
+client_id = "c1b3c3aa-65c8-4608-8ea5-4aa50a6f3f13"
+client_secret = "eae7cc79-c5d3-4438-8d98-0de6c6d1a15a"
 [redis]
     host = "redis"
     port = "6379"

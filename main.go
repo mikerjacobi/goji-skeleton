@@ -4,23 +4,16 @@ import (
 	"flag"
 
 	"github.com/mikerjacobi/goji-skeleton/middleware"
+	_ "github.com/mikerjacobi/goji-skeleton/zzz_config"
 
 	log "github.com/Sirupsen/logrus"
 	_ "github.com/lib/pq"
 	"github.com/mikerjacobi/goji-skeleton/controllers"
-	"github.com/spf13/viper"
 	"github.com/zenazn/goji"
 )
 
-var (
-	config     string
-	configpath string
-)
-
 func init() {
-	flag.StringVar(&config, "config", "config", "config file name")
-	flag.StringVar(&configpath, "configpath", ".", "the location of your config file")
-	flag.Parse()
+	log.Info("starting main middleware init")
 }
 
 /*
@@ -37,11 +30,6 @@ func alias2ipaddr(alias string) (string, error) {
 */
 
 func main() {
-	//setup config
-	viper.AddConfigPath(configpath)
-	viper.AddConfigPath("/go/src")
-	viper.SetConfigName(config)
-	viper.ReadInConfig()
 
 	//setup sessions
 	/*
@@ -82,7 +70,7 @@ func main() {
 	//setup routes
 	goji.Get("/home", controllers.IndexHandler)
 	goji.Get("/healthcheck", controllers.HealthCheckHandler)
-	//goji.Get("/login", controllers.Login)
+	goji.Get("/login", controllers.Login)
 	//goji.Get("/logout", controllers.Logout)
 
 	//setup static assets
