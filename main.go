@@ -71,6 +71,7 @@ func main() {
 	goji.Get("/home", controllers.IndexHandler)
 	goji.Get("/healthcheck", controllers.HealthCheckHandler)
 	goji.Get("/login", controllers.Login)
+	goji.Get("/oauth2callback", controllers.OAuth2Callback)
 	//goji.Get("/logout", controllers.Logout)
 
 	//setup static assets
