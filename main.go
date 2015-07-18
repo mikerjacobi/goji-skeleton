@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 
+	"github.com/hypebeast/gojistatic"
 	"github.com/mikerjacobi/goji-skeleton/middleware"
 	_ "github.com/mikerjacobi/goji-skeleton/zzz_config"
 
@@ -75,7 +76,7 @@ func main() {
 	//goji.Get("/logout", controllers.Logout)
 
 	//setup static assets
-	//goji.Use(gojistatic.Static("static", gojistatic.StaticOptions{SkipLogging: false, Prefix: "static"}))
+	goji.Use(gojistatic.Static("/go/src/static", gojistatic.StaticOptions{SkipLogging: false, Prefix: "static"}))
 	//goji.Use(gojistatic.Static("node_modules", gojistatic.StaticOptions{SkipLogging: false, Prefix: "node_modules"}))
 
 	//begin

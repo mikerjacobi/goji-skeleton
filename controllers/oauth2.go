@@ -30,6 +30,8 @@ func getOAuthConf() oauth2.Config {
 }
 
 func Login(c web.C, w http.ResponseWriter, r *http.Request) {
+	r.ParseForm()
+	log.Infof("%v\n", r.Form)
 	conf := getOAuthConf()
 	authURL := conf.AuthCodeURL("state", oauth2.AccessTypeOffline)
 	log.Infof("redirecting to: %s", authURL)
