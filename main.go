@@ -6,6 +6,7 @@ import (
 	"github.com/hypebeast/gojistatic"
 	"github.com/mikerjacobi/goji-skeleton/middleware"
 	_ "github.com/mikerjacobi/goji-skeleton/zzz_config"
+	"github.com/rs/cors"
 
 	log "github.com/Sirupsen/logrus"
 	_ "github.com/lib/pq"
@@ -51,6 +52,11 @@ func main() {
 		goji.Use(base.BuildSessionMiddleware(sh))
 	*/
 
+	c := cors.New(cors.Options{
+		AllowedOrigins: []string{"*"},
+	})
+	goji.Use(c.Handler)
+
 	//setup render middleware
 	goji.Use(middleware.RenderMiddleware)
 
@@ -76,8 +82,8 @@ func main() {
 	//goji.Get("/logout", controllers.Logout)
 
 	//setup static assets
-	goji.Use(gojistatic.Static("/go/src/static", gojistatic.StaticOptions{SkipLogging: false, Prefix: "static"}))
-	//goji.Use(gojistatic.Static("node_modules", gojistatic.StaticOptions{SkipLogging: false, Prefix: "node_modules"}))
+	goji.Use(gojistatic.Static("/go/src/bower_components", gojistatic.StaticOptions{SkipLogging: true, Prefix: "bower_components"}))
+	goji.Use(gojistatic.Static("/go/src/frontend/js", gojistatic.StaticOptions{SkipLogging: true, Prefix: "js"}))
 
 	//begin
 	log.Info("Starting App...")
